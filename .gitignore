@@ -1,0 +1,7 @@
+__pycashe__/
+*.pyc
+venv/
+.vscode/
+**/settings.py
+.venv
+handmade_gecko_store.code-workspace

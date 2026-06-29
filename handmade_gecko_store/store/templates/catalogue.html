@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>  
+    <head>  
+        <title>Catalogue</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+
+<body>
+    <header class="header">
+        <h1>Каталог</h1>
+    </header>
+
+
+    <div class="catalogue">
+
+    {% for product in products %}
+
+        <div class="card">
+
+            {% if product.image %}
+                <img
+                    src="{{ product.image.url }}"
+                    alt="{{ product.name }}"
+                    width="250"
+                >
+            {% endif %}
+
+            <h3>{{ product.name }}</h3>
+
+            <p>{{ product.price }} ₽</p>
+
+            <p>
+                {{product.in_stock}}
+                {{ product.amount_left }}
+            </p>
+            <form method="post" action="{% url 'Add_to_basket' product.id %}">
+
+                {% csrf_token %}
+
+                <button>
+                    Добавить в корзину
+                </button>
+
+            </form>
+
+        </div>
+
+    {% endfor %}
+
+    </div>
+</body>
